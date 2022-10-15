@@ -72,5 +72,13 @@ namespace MVC_SIS_UI.Controllers
             return RedirectToAction("Majors");
         }
 
+
+        [HttpGet]
+        public ActionResult States()
+        {
+            var model = StateRepository.GetAll();
+            return View(model.ToList());
+        }
+
     }
 }
