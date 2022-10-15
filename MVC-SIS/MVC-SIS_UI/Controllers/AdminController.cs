@@ -83,11 +83,11 @@ namespace MVC_SIS_UI.Controllers
         [HttpGet]
         public ActionResult AddState()
         {
-            return View(new AddStateVM());
+            return View(new AddEditStateVM());
         }
 
         [HttpPost]
-        public ActionResult AddState(AddStateVM viewModel)
+        public ActionResult AddState(AddEditStateVM viewModel)
         {
             if (!ModelState.IsValid)
             {
@@ -95,6 +95,26 @@ namespace MVC_SIS_UI.Controllers
             }
 
             StateRepository.Add(viewModel.currentState);
+            return RedirectToAction("States");
+        }
+
+        [HttpGet]
+        public ActionResult EditState(string id)
+        {
+            AddEditStateVM viewmodel = new AddEditStateVM();
+            viewmodel.currentState = StateRepository.Get(id);
+            return View(viewmodel);
+        }
+
+        [HttpPost]
+        public ActionResult EditState(AddEditStateVM viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(viewModel);
+            }
+
+            StateRepository.Edit(viewModel.currentState);
             return RedirectToAction("States");
         }
 

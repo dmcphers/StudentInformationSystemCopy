@@ -7,7 +7,7 @@ using System.Web;
 
 namespace MVC_SIS_UI.Models
 {
-    public class AddStateVM: IValidatableObject
+    public class AddEditStateVM: IValidatableObject
     {
         public State currentState { get; set; }
 
