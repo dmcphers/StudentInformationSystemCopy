@@ -97,5 +97,20 @@ namespace MVC_SIS_UI.Controllers
             StateRepository.Add(viewModel.currentState);
             return RedirectToAction("States");
         }
+
+        [HttpGet]
+        public ActionResult DeleteState(string id)
+        {
+            DeleteStateVM viewModel = new DeleteStateVM();
+            viewModel.currentState = StateRepository.Get(id);
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteState(DeleteStateVM viewModel)
+        {
+            StateRepository.Delete(viewModel.currentState.StateAbbreviation);
+            return RedirectToAction("States");
+        }
     }
 }
