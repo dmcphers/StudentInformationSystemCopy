@@ -127,6 +127,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AddEditMajorVM.cs" />
+    <Compile Include="Models\AddStateVM.cs" />
     <Compile Include="Models\DeleteMajorVM.cs" />
     <Compile Include="Models\StudentAddVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
