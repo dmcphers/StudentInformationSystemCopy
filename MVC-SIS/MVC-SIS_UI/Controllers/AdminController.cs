@@ -80,5 +80,22 @@ namespace MVC_SIS_UI.Controllers
             return View(model.ToList());
         }
 
+        [HttpGet]
+        public ActionResult AddState()
+        {
+            return View(new AddStateVM());
+        }
+
+        [HttpPost]
+        public ActionResult AddState(AddStateVM viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(viewModel);
+            }
+
+            StateRepository.Add(viewModel.currentState);
+            return RedirectToAction("States");
+        }
     }
 }
