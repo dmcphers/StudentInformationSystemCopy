@@ -177,5 +177,20 @@ namespace MVC_SIS_UI.Controllers
             CourseRepository.Edit(viewModel.currentCourse);
             return RedirectToAction("Courses");
         }
+
+        [HttpGet]
+        public ActionResult DeleteCourse(int id)
+        {
+            DeleteCourseVM viewModel = new DeleteCourseVM();
+            viewModel.currentCourse = CourseRepository.Get(id);
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteCourse(DeleteCourseVM viewModel)
+        {
+            CourseRepository.Delete(viewModel.currentCourse.CourseId);
+            return RedirectToAction("Courses");
+        }
     }
 }
