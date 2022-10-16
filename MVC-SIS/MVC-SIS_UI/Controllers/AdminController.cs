@@ -132,5 +132,12 @@ namespace MVC_SIS_UI.Controllers
             StateRepository.Delete(viewModel.currentState.StateAbbreviation);
             return RedirectToAction("States");
         }
+
+        [HttpGet]
+        public ActionResult Courses()
+        {
+            var model = CourseRepository.GetAll();
+            return View(model.ToList());
+        }
     }
 }
