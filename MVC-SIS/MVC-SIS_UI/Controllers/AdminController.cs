@@ -139,5 +139,23 @@ namespace MVC_SIS_UI.Controllers
             var model = CourseRepository.GetAll();
             return View(model.ToList());
         }
+
+        [HttpGet]
+        public ActionResult AddCourse()
+        {
+            return View(new AddEditCourseVM());
+        }
+
+        [HttpPost]
+        public ActionResult AddCourse(AddEditCourseVM viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(viewModel);
+            }
+
+            CourseRepository.Add(viewModel.currentCourse.CourseName);
+            return RedirectToAction("Courses");
+        }
     }
 }

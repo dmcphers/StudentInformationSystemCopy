@@ -126,6 +126,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AddEditCourseVM.cs" />
     <Compile Include="Models\AddEditMajorVM.cs" />
     <Compile Include="Models\AddEditStateVM.cs" />
     <Compile Include="Models\DeleteMajorVM.cs" />
@@ -180,6 +181,7 @@
     <Content Include="Views\Admin\DeleteState.cshtml" />
     <Content Include="Views\Admin\EditState.cshtml" />
     <Content Include="Views\Admin\Courses.cshtml" />
+    <Content Include="Views\Admin\AddCourse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
