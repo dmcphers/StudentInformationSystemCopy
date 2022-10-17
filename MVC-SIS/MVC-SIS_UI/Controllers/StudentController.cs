@@ -37,6 +37,14 @@ namespace MVC_SIS_UI.Controllers
         [HttpPost]
         public ActionResult Add(StudentAddVM studentVM)
         {
+            if (!ModelState.IsValid)
+            {
+                studentVM.SetCourseItems(CourseRepository.GetAll());
+                studentVM.SetMajorItems(MajorRepository.GetAll());
+
+                return View(studentVM);
+            }
+
             studentVM.Student.Courses = new List<Course>();
 
             foreach (var id in studentVM.SelectedCourseIds)

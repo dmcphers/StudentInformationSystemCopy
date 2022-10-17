@@ -1,13 +1,14 @@
 ﻿using MVC_SIS_Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
 namespace MVC_SIS_UI.Models
 {
-    public class StudentAddVM
+    public class StudentAddVM: IValidatableObject
     {
         public Student Student { get; set; }
         public List<SelectListItem> CourseItems { get; set; }
@@ -58,6 +59,37 @@ namespace MVC_SIS_UI.Models
                     Text = state.StateName
                 });
             }
+        }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            List<ValidationResult> errors = new List<ValidationResult>();
+
+            if (Student.FirstName == null || Student.FirstName == "")
+            {
+                errors.Add(new ValidationResult("Please enter a First Name",
+                    new[] { "Student.FirstName" }));
+            }
+
+            if (Student.LastName == null || Student.LastName == "")
+            {
+                errors.Add(new ValidationResult("Please enter a Last Name",
+                    new[] { "Student.LastName" }));
+            }
+
+            if (Student.Major.MajorId == 0)
+            {
+                errors.Add(new ValidationResult("Please select a Major",
+                    new[] { "Student.Major.MajorId" }));
+            }
+
+            if (Student.GPA == 0.0M)
+            {
+                errors.Add(new ValidationResult("Please enter a GPA",
+                    new[] { "Student.GPA" }));
+            }
+
+            return errors;
         }
     }
 }
