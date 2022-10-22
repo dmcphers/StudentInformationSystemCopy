@@ -133,6 +133,7 @@
     <Compile Include="Models\DeleteMajorVM.cs" />
     <Compile Include="Models\DeleteStateVM.cs" />
     <Compile Include="Models\StudentAddVM.cs" />
+    <Compile Include="Models\StudentEditVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -185,6 +186,7 @@
     <Content Include="Views\Admin\AddCourse.cshtml" />
     <Content Include="Views\Admin\EditCourse.cshtml" />
     <Content Include="Views\Admin\DeleteCourse.cshtml" />
+    <Content Include="Views\Student\EditStudent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

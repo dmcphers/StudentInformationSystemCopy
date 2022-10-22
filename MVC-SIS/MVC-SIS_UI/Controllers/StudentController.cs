@@ -56,5 +56,37 @@ namespace MVC_SIS_UI.Controllers
 
             return RedirectToAction("List");
         }
+
+        [HttpGet]
+        public ActionResult EditStudent(int id)
+        {
+            StudentEditVM viewmodel = new StudentEditVM();
+            viewmodel.SetCourseItems(CourseRepository.GetAll());
+            viewmodel.SetMajorItems(MajorRepository.GetAll());
+            viewmodel.student = StudentRepository.Get(id);
+            return View(viewmodel);
+        }
+
+        [HttpPost]
+        public ActionResult EditStudent(StudentEditVM viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                viewModel.SetCourseItems(CourseRepository.GetAll());
+                viewModel.SetMajorItems(MajorRepository.GetAll());
+                return View(viewModel);
+            }
+
+            viewModel.student.Courses = new List<Course>();
+
+            foreach (var id in viewModel.SelectedCourseIds)
+                viewModel.student.Courses.Add(CourseRepository.Get(id));
+
+            viewModel.student.Major = MajorRepository.Get(viewModel.student.Major.MajorId);
+            StudentRepository.Edit(viewModel.student);
+            StudentRepository.SaveAddress(viewModel.student.StudentId, viewModel.student.Address);
+
+            return RedirectToAction("List");
+        }
     }
 }
