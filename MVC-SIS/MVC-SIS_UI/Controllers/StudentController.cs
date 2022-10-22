@@ -88,5 +88,20 @@ namespace MVC_SIS_UI.Controllers
 
             return RedirectToAction("List");
         }
+
+        [HttpGet]
+        public ActionResult DeleteStudent(int id)
+        {
+            StudentDeleteVM viewModel = new StudentDeleteVM();
+            viewModel.Student = StudentRepository.Get(id);
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteStudent(StudentDeleteVM viewModel)
+        {
+            StudentRepository.Delete(viewModel.Student.StudentId);
+            return RedirectToAction("List");
+        }
     }
 }
